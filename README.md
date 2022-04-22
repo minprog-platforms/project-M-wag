@@ -1,6 +1,6 @@
 
 ## Background
-Eutrophication refers to the processwhereby a body of water experiences an increase in nutrients. A common consequence of this is algal bloom, the rapid increase in the growth of the algae population. This process occurs naturally, however can be sped up by human activty. Which is referred to as cultural euthrophication.
+Eutrophication refers to the process whereby a body of water experiences an increase in nutrients. A common consequence of this is algal bloom, the rapid increase in the growth of the algae population. This process occurs naturally, however can be sped up by human activty. Which is referred to as cultural euthrophication.
 
 ##  Problem
 A body of water is also inhabitated by other plants, bacteria and fish. Algae bloom can cause damage to the ecosystem in two ways: (1)disrupting the blocking of sunlight, leading to death in underwater plants and (2) leading to deoxygenation in the underlying water. 
