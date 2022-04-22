@@ -4,7 +4,7 @@ Eutrophication refers to the processwhereby a body of water experiences an incre
 
 ##  Problem
 A body of water is also inhabitated by other plants, bacteria and fish. Algae bloom can cause damage to the ecosystem in two ways: (1)disrupting the blocking of sunlight, leading to death in underwater plants and (2) leading to deoxygenation in the underlying water. 
-
+![Illustration of Euthrophication](doc/image.png)
 
 ##  Model Requirements
 An accurate simulation requires that under normal conditions a body of water should see no or limited change. Only upon introduction of a large nutrient increase should harmful bloom occur. 
