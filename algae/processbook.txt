@@ -1,0 +1,77 @@
+26- April
+
+    Started properly working on gas distribution
+
+    Basic mechanism: A cell spread it's content equally to all cells in the neighborhood(including itself)
+
+    Impelemted: get_neighborhood, out_of_bounds, spread, change_value, get_value, add_value, spread_grid, visualize_grid
+
+    get_neighborhood and out_of_bounds heavily inspired from Mesa library
+
+    spread initiates from (0, 0) causing unequal distribution
+    when using spread_grid make each cell pass it's spread values to a tempory list of list and then change whole value of oxygen map
+
+    visualize using heatmap 
+
+
+
+    --After Labwork & Betabreak--
+
+    Implemented SPread Grid Function Propery 
+    Visualizing is fucked, corners and borders are odd
+    Heatmap in general is a bad metric because it indicates relative color
+
+27-April-2022
+
+    Requirement: Make a 2D grid that can store information from multiple variables.
+    Interaction in the 2D grid needs to be able to take place between varaiables of the same type
+    Agents also need to be able to move from grid to grid
+
+    Option 1: List of List with dicts
+    Option 2: Dataframe with multinindex
+
+    Option 1 Benefits:
+        -Easier to Impelement
+        -Easier to work with data structure
+    Option 1 Downsides:
+        -Possibly Slower
+
+    Option 2 Benefits:
+        -Increase in speed
+        -Less esoteric datastructure
+        -Better interaction with other classes
+    Option2 Downsides:
+        -Harder to implement 
+        -Is a DataFrame useful for a 2D spatia grid
+        -Unreadable
+
+    Chose to use a list of dicts because visualizing is easier along with easier implementation
+    Translated most functions to be usable with multiple variable
+
+    Next step:
+        Likely Option: 
+            Store the spread distribution to a temporary grid of ints
+            Find a efficient way to change the entry of the dictionaries to this
+            
+            example: for (x, y) in MultiVarGrid, cell[x][y][variable] = temp[x][y]
+            O(N) scales linearly with size of Grid
+
+        (Possibly Better) Alterantive:
+            temp_grid is a copy of MultiVarGrid
+            only variable that is of interest is set to 0 and incremented to
+
+            example: 
+            temp grid = MultiVarGrid
+            for (x,y) temp grid[variable] = spread_amount(x,y)
+            MultiVarGrid = temp Grid
+            O(1) simply reference temp grid now
+
+    Ended just iterating through each grid and changing the dict
+
+    Future Iplementation:
+        -The higher the concetration, the more spread
+        example radius = rounddown(cell.value/3) + 1
+
+    Next Plan:
+        -Fish implementation
+               
