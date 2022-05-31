@@ -74,4 +74,80 @@
 
     Next Plan:
         -Fish implementation
-               
+
+18-May
+ 
+Working on find algae.
+ When generating algae it's all the same variable
+ 
+       Finish Determinstic Food Location
+       Add Oxygen Mechanism
+        Add Birth Mechanism
+ 
+23-May-2022
+ 
+Movement and visualization are most important so working on that RN
+
+	Visualization has been fixed.
+	New move_to_food function passing wrong data type to model.grid.move_agent
+	
+	Figure out how to make data type FloatCoordinate
+	After that is done movement should be random. Algae visualization needs to be implemented
+
+25-May-2022
+
+	Goal:
+	Implement FloatCoordinate datatype
+
+26-May-2022
+	Float Coordianate was not the issue, stochastic locate_food was exporing [tuple] not tuple
+	Determistic search always goes to top right corner
+	
+	Goals:
+	Visualize Algae
+	Visualize Multiple Fish in one Corner
+	
+	Make algae testing environment
+	Make algae random
+	Finish Fish Eating
+	Change to SingleGrid
+	Make a function that just takes a dictionary and adds that to fish
+	Make Algae Distribitution Random
+
+
+	Accomplished:
+	Fish Eat Algae
+	Fish will regulate eating
+
+	Next Time:
+	Fish Death
+	Turn it Single Grid
+	Birth Function
+
+27-May-20
+	Single Grid Function:
+		-Agent Allocation Cannot Overlap
+		-Cannot move to new Neighbors
+		-Cannot give birth on a neighbor`
+
+	Fish Death
+        - Remove Fish From Scheduler
+        - Make invisble on screen
+    
+    Birth:
+        -Creates new Fish
+        -Not Unique
+        -Place on other fish
+
+    Tommorow:
+        Fix Birth
+        Add Oxygen
+	
+28-May-2022
+	
+	-No Unique Id
+	-Birth on same place
+
+29-May-22
+	-Algae Growth Mostly Finished
+	-Becaue fully satured squares do not give spread some squares get stuck

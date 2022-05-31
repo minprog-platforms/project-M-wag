@@ -1,4 +1,7 @@
 from copy import deepcopy
+import random
+
+from numpy import var
 
 #Based on Mesa Module
 class MultiVarGrid:
@@ -26,10 +29,14 @@ class MultiVarGrid:
         self.grid =  []
         self.variables = variables
 
+        random_value = lambda min: random.uniform(min, 1)
         for x in range(self.width): 
             col = []
             for y in range(self.height):
-                col.append(deepcopy(self.variables))
+                variables = deepcopy(self.variables)        
+                # Construct dictionary of variables with random values
+                variables = {var : random_value(variables[var]) for var in variables}
+                col.append(variables)
             self.grid.append(col)
 
     def spread(self, variables: list, radius: int):
@@ -41,7 +48,7 @@ class MultiVarGrid:
                     self.grid[x][y][variable] = spread_grid[x][y]
 
     def get_variable_spread(self, variable, radius: int) -> list:
-        """For a given variable get the resulting distribution of its sprad"""
+        """For a given variable get the resulting distribution of, growth_function its sprad"""
         spread_grid = [[0.0 for i in range(self.width)] for j in range(self.height)]
         for y in range(self.height):
             for x in range(self.width):
@@ -53,10 +60,31 @@ class MultiVarGrid:
                     spread_grid[n_x][n_y] += spread_amount
         return spread_grid
         
+    def make_oxygen(self, oxygen_func):
+        """Add oxygen produced from algae to grid"""
+        for y in range(self.height):
+            for x in range(self.width):
+                algae_value = self.get_value((x,y), 'algae')
+                oxygen_value = oxygen_func(algae_value)
+                self.add_value((x,y), 'oxygen', oxygen_value) 
+                if self.get_value((x,y), 'oxygen') > 1:
+                    self.change_value((x,y), 'oxygen', 1)
+                
+    def growth_grid(self, variable, growth_func):
+        """Pass a variable to grow to the ajacent squares"""
+        grid_copy = self.return_variable_grid(variable)
 
-    def visualize_grid(self):
-        for y in range(self.height - 1, 0 - 1, -1):
-            print(self.grid[y]) 
+        for y in range(self.height):
+            for x in range(self.width):
+                surr_coords = self.get_neighborhood((x,y), radius= 1) 
+                growth_amount = growth_func(grid_copy[x][y])
+                for coord in surr_coords:
+                    self.add_value(coord, variable, growth_amount)
+                    if self.get_value(coord, variable) > 1:
+                        self.change_value(coord, variable, 1)
+                    elif self.get_value(coord, variable) < 0:
+                        self.change_value(coord, variable, 0)
+    
 
     def return_variable_grid(self, variable):
         variable_grid = [[cell[variable] for cell in col] for col in self.grid]
@@ -89,7 +117,6 @@ class MultiVarGrid:
     def get_neighborhood(self, pos: set, radius: int) -> list:
         
         coordinates = [] 
-        # TODO IMPLEMENT CACHE FOR ALREADY PARSED CELLS
         x,y = pos
         for dy in range(-radius, radius + 1):
             for dx in range(-radius, radius +1):
