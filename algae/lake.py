@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from fish import Fish
 from math import atan, pi
 
-growth_function = lambda x : -0.33/pi*atan(x - 1)
-oxygen_function = lambda x : 0.3*(-x + 1.2)
+growth_function = lambda x : -0.23/pi*atan(x - 1.001)
+oxygen_function = lambda x : 0.2*(-x + 1.1)
 
 class Lake(Model):
     """A model with some number of agents."""
@@ -77,16 +77,16 @@ class Lake(Model):
             oxygen_grid = list(zip(*oxygen_grid[::-1]))
             fish_grid = list(zip(*fish_grid[::-1]))
 
-        ax_algae = sns.heatmap(algae_grid, annot=False, cmap='Greens', cbar = False)
-        fig_algae = ax_algae.get_figure()
-        fig_algae.savefig("liveview/algae.jpg")
+        # ax_algae = sns.heatmap(algae_grid, annot=False, cmap='Greens', cbar = False)
+        # fig_algae = ax_algae.get_figure()
+        # fig_algae.savefig("liveview/algae.jpg")
     
-        ax_oxygen = sns.heatmap(oxygen_grid, annot=False, cbar = False)
-        fig_oxygen = ax_oxygen.get_figure()
-        fig_oxygen.savefig("liveview/oxygen.jpg")
+        # ax_oxygen = sns.heatmap(oxygen_grid, annot=False, cbar = False)
+        # fig_oxygen = ax_oxygen.get_figure()
+        # fig_oxygen.savefig("liveview/oxygen.jpg")
 
         #   Print Grid
-        for i in range(0, self.height):
-            print(["{:.2f}".format(number) for number in algae_grid[i]], end='\t')
-            print(["{:.2f}".format(number) for number in oxygen_grid[i]], end = '\t')
-            print(["{:.2f}".format(number) for number in fish_grid[i]])
+        # for i in range(0, self.height):
+            # print(["{:.2f}".format(number) for number in algae_grid[i]], end='\t')
+            # print(["{:.2f}".format(number) for number in oxygen_grid[i]], end = '\t')
+            # print(["{:.2f}".format(number) for number in fish_grid[i]])

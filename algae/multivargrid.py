@@ -1,8 +1,6 @@
 from copy import deepcopy
 import random
 
-from numpy import var
-
 #Based on Mesa Module
 class MultiVarGrid:
     """Class for a 2d grid containing mulitple variables per cell 

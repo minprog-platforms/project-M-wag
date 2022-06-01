@@ -4,12 +4,19 @@ from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
 
 def main():
-    dim = 3
-    grid = CanvasGrid(agent_portrayal, dim, dim, 500, 500)
+    dim = 10
+    var = {
+        "N" : 1,
+        "width" : dim,
+        "height" : dim,
+        "starting_health" : 0.5,
+        "hunger_rate" : 0.4,
+    }
+    grid = CanvasGrid(agent_portrayal, var["width"], var["height"], 500, 500)
     server = ModularServer(Lake,
                         [grid],
                         "Lake Model",
-                        {"N":1, "width":dim, "height":dim, "starting_health" : 0.5, "hunger_rate": 0.1 })
+                        {"N":1, "width": var["width"], "height":var["height"], "starting_health" : 0.5, "hunger_rate": 0.1 })
     server.port = 8521 # The default
     server.launch()
 

@@ -9,9 +9,10 @@ from typing import (
 )
 
 Coordinate = Tuple[int, int]
-max_intake = 0.3
-birth_threshold = 0.8
+max_intake = 0.2
+birth_threshold = 0.85
 birth_cost = 0.3
+oxygen_intake = 0.3
 
 class Fish(Agent):
     def __init__(self, unique_id, model, starting_health, hunger_rate) -> None:
@@ -26,8 +27,8 @@ class Fish(Agent):
 
         oxygen_level =  self.model.variable_grid.get_value(self.pos, 'oxygen')
         if oxygen_level < 0.5:
-            self.health -= (0.5 - oxygen_level)/2
-        self.model.variable_grid.add_value(self.pos, 'oxygen', -0.1)
+            self.health -= (0.5 - oxygen_level)/1.2
+        self.model.variable_grid.add_value(self.pos, 'oxygen', -oxygen_intake)
         if oxygen_level - 0.1 < 0:
             self.model.variable_grid.change_value(self.pos, 'oxygen', 0)
 
@@ -115,6 +116,7 @@ class Fish(Agent):
     def die(self):
         self.living = False
         self.model.schedule.remove(self)
+        self.model.grid.remove_agent(self)
         
     def birth(self):
         self.health -= birth_cost
