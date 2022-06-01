@@ -13,6 +13,8 @@ max_intake = 0.2
 birth_threshold = 0.85
 birth_cost = 0.3
 oxygen_intake = 0.3
+suffocation_threshold = 0.5
+oxygen_damage_func = lambda x: x/1.2
 
 class Fish(Agent):
     def __init__(self, unique_id, model, starting_health, hunger_rate) -> None:
@@ -26,10 +28,10 @@ class Fish(Agent):
         self.health-= self.hunger_rate 
 
         oxygen_level =  self.model.variable_grid.get_value(self.pos, 'oxygen')
-        if oxygen_level < 0.5:
-            self.health -= (0.5 - oxygen_level)/1.2
+        if oxygen_level < suffocation_threshold:
+            self.health -= oxygen_damage_func(suffocation_threshold - oxygen_level)
         self.model.variable_grid.add_value(self.pos, 'oxygen', -oxygen_intake)
-        if oxygen_level - 0.1 < 0:
+        if oxygen_level < 0:
             self.model.variable_grid.change_value(self.pos, 'oxygen', 0)
 
         if self.health > birth_threshold and len(self.get_free_space(can_move_center = False)) > 0:
