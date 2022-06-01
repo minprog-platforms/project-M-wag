@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from fish import Fish
 from math import atan, pi
 
-growth_function = lambda x : -0.23/pi*atan(x - 1.001)
-oxygen_function = lambda x : 0.2*(-x + 1.1)
+growth_function = lambda x : -0.23/pi*atan(x - 1.1)
+oxygen_function = lambda x : 0.3*(-x + 1.1)
 algae_value_minimum = 0
 oxygen_value_minimum = 0.7
 
@@ -79,13 +79,13 @@ class Lake(Model):
             oxygen_grid = list(zip(*oxygen_grid[::-1]))
             fish_grid = list(zip(*fish_grid[::-1]))
 
-        # ax_algae = sns.heatmap(algae_grid, annot=False, cmap='Greens', cbar = False)
-        # fig_algae = ax_algae.get_figure()
-        # fig_algae.savefig("liveview/algae.jpg")
+        ax_algae = sns.heatmap(algae_grid, annot=False, cmap='Greens', cbar = False)
+        fig_algae = ax_algae.get_figure()
+        fig_algae.savefig("liveview/algae.jpg")
     
-        # ax_oxygen = sns.heatmap(oxygen_grid, annot=False, cbar = False)
-        # fig_oxygen = ax_oxygen.get_figure()
-        # fig_oxygen.savefig("liveview/oxygen.jpg")
+        ax_oxygen = sns.heatmap(oxygen_grid, annot=False, cbar = False)
+        fig_oxygen = ax_oxygen.get_figure()
+        fig_oxygen.savefig("liveview/oxygen.jpg")
 
         #   Print Grid
         # for i in range(0, self.height):
