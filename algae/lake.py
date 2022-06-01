@@ -9,6 +9,8 @@ from math import atan, pi
 
 growth_function = lambda x : -0.23/pi*atan(x - 1.001)
 oxygen_function = lambda x : 0.2*(-x + 1.1)
+algae_value_minimum = 0
+oxygen_value_minimum = 0.7
 
 class Lake(Model):
     """A model with some number of agents."""
@@ -22,7 +24,7 @@ class Lake(Model):
         self.width = width
         self.hunger_rate = hunger_rate
         #   Create Grid Storing all Non-Agent Variables
-        lake_variables = {'algae' : 0.0, 'oxygen' : 0.7}
+        lake_variables = {'algae' : algae_value_minimum, 'oxygen' : oxygen_value_minimum}
         self.variable_grid = MultiVarGrid(width, height, lake_variables)
 
         # Create agents
