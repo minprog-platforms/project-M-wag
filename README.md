@@ -23,7 +23,7 @@ Algae grow each step. Algae is food for the fish and block oxygen production.
 
 Oxygen spreads each step. Oxygen is produced by algae and breathed in by fish. 
 
-![Illustration of Euthrophication](doc/oxygen.fish)
+![Illustration of Euthrophication](doc/oxygen.gif)
 
 
 # Dynamics
