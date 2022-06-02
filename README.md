@@ -11,7 +11,7 @@ Three things primarily determine dynamics of this model: Fish, Algae and Oxygen.
 
 Fish are agents that swim around looking for food and reproducing. They require oxygen and algae to stay alive. 
 
-![Illustration of Fish](doc/fish.mp4)
+![Illustration of Fish](doc/fish.gif)
 
 # Algae 
 
@@ -23,7 +23,7 @@ Algae grow each step. Algae is food for the fish and block oxygen production.
 
 Oxygen spreads each step. Oxygen is produced by algae and breathed in by fish. 
 
-![Illustration of Euthrophication](doc/oxygen.mp4)
+![Illustration of Euthrophication](doc/oxygen.fish)
 
 
 # Dynamics
