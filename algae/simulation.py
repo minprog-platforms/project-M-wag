@@ -1,7 +1,7 @@
 from lake import Lake
-from fish import Fish
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
+
 
 def main():
     dim = 10
@@ -12,12 +12,15 @@ def main():
         "starting_health" : 0.5,
         "hunger_rate" : 0.4,
     }
+
+#   Everything below here should stay unchanged
+
     grid = CanvasGrid(agent_portrayal, var["width"], var["height"], 500, 500)
     server = ModularServer(Lake,
                         [grid],
                         "Lake Model",
-                        {"N":1, "width": var["width"], "height":var["height"], "starting_health" : 0.5, "hunger_rate": 0.1 })
-    server.port = 8521 # The default
+                        {"N":1, "width": var["width"], "height":var["height"], "starting_health" : 0.5})
+    server.port = 8521 
     server.launch()
 
 def agent_portrayal(agent):

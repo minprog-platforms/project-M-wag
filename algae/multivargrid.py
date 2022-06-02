@@ -23,7 +23,6 @@ class MultiVarGrid:
  
         self.height = height
         self.width = width
-        #   TODO Add Cache        
         self.grid =  []
         self.variables = variables
 
@@ -46,7 +45,7 @@ class MultiVarGrid:
                     self.grid[x][y][variable] = spread_grid[x][y]
 
     def get_variable_spread(self, variable, radius: int) -> list:
-        """For a given variable get the resulting distribution of, growth_function its sprad"""
+        """For a given variable get the resulting distribution of, its sprad"""
         spread_grid = [[0.0 for i in range(self.width)] for j in range(self.height)]
         for y in range(self.height):
             for x in range(self.width):
@@ -57,16 +56,6 @@ class MultiVarGrid:
                     n_x, n_y = neighbor_pos
                     spread_grid[n_x][n_y] += spread_amount
         return spread_grid
-        
-    def make_oxygen(self, oxygen_func):
-        """Add oxygen produced from algae to grid"""
-        for y in range(self.height):
-            for x in range(self.width):
-                algae_value = self.get_value((x,y), 'algae')
-                oxygen_value = oxygen_func(algae_value)
-                self.add_value((x,y), 'oxygen', oxygen_value) 
-                if self.get_value((x,y), 'oxygen') > 1:
-                    self.change_value((x,y), 'oxygen', 1)
                 
     def growth_grid(self, variable, growth_func):
         """Pass a variable to grow to the ajacent squares"""
@@ -85,10 +74,12 @@ class MultiVarGrid:
     
 
     def return_variable_grid(self, variable):
+        """Return the whole grid for only one specific variable"""
         variable_grid = [[cell[variable] for cell in col] for col in self.grid]
         return variable_grid
         
     def return_grid(self):
+        """Return the whole grid, including all variables"""
         return self.grid
 
     def get_value(self, pos: set, variable):
@@ -100,12 +91,11 @@ class MultiVarGrid:
         """Add value to a given cell"""
         x,y = pos
         variable_type = type(self.grid[x][y][variable])
-        #   Check to see if mth can be operated
+        #   Check to see if numeric
         if variable_type == int or variable_type == float:
             self.grid[x][y][variable] += value
         else:
             print("Can only add value to float or ints")
-    
 
     def change_value(self, pos: set, variable, value: float):
         """Change value of a given cell"""
@@ -113,7 +103,9 @@ class MultiVarGrid:
         self.grid[x][y][variable] = value
 
     def get_neighborhood(self, pos: set, radius: int) -> list:
-        
+        """For a given position, get the center position and the position of the cells surroundng it
+            
+            radius: length of cells taken around the center"""
         coordinates = [] 
         x,y = pos
         for dy in range(-radius, radius + 1):
@@ -125,5 +117,6 @@ class MultiVarGrid:
         return coordinates 
 
     def out_of_bounds(self, pos) -> bool:
+        """Determine if a pos is outside of allocated memory"""
         x,y = pos
         return x < 0 or x >= self.width or y < 0 or y >= self.height
