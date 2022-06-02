@@ -1,19 +1,31 @@
-
+# Euthrophication
+### Brandon Chin-A-Lien
 ## Background
-Eutrophication refers to the process whereby a body of water experiences an increase in nutrients. A common consequence of this is algal bloom, the rapid increase in the growth of the algae population. This process occurs naturally, however can be sped up by human activty. Which is referred to as cultural euthrophication.
+Eutrophication refers to the process whereby a body of water experiences an increase in nutrients. A common consequence of this is algal bloom, the rapid increase in the growth of the algae population. This process occurs naturally, however can be sped up by human activty. Which is referred to as cultural euthrophication. This has negative effects on the ecosystem. 
 
-##  Problem
-A body of water is also inhabitated by other plants, bacteria and fish. Algae bloom can cause damage to the ecosystem in two ways: (1)disrupting the blocking of sunlight, leading to death in underwater plants and (2) leading to deoxygenation in the underlying water. 
-![Illustration of Euthrophication](doc/image.png)
+We attempt to reproduce this effect in Agent Based Model. With this model we hope to reach new solutions on countering algae bloom.
 
-##  Model Requirements
-An accurate simulation requires that under normal conditions a body of water should see no or limited change. Only upon introduction of a large nutrient increase should harmful bloom occur. 
+Three things primarily determine dynamics of this model: Fish, Algae and Oxygen.
 
-##  Prerequisites
-####  Modules
-- Mesa
-- Matplotlib
-####  Hardest Parts
-- Ecosystem Homeostatis in absence of nutrient increases
-- Moving Agents
-- Dispersion and Depletion of Oxygen
+# Fish
+
+Fish are agents that swim around looking for food and reproducing. They require oxygen and algae to stay alive. 
+
+![Illustration of Fish](doc/fish.mp4)
+
+# Algae 
+
+Algae grow each step. Algae is food for the fish and block oxygen production. 
+
+![Illustration of Algae](doc/algae_with_fish.gif)
+
+# Oxygen
+
+Oxygen spreads each step. Oxygen is produced by algae and breathed in by fish. 
+
+![Illustration of Euthrophication](doc/oxygen.mp4)
+
+
+# Dynamics
+
+Overall the goal is to keep a balance between algae consumption and oxygen production so the fish do not die. Changing the parameters can drastically change the homeostasis of the model
