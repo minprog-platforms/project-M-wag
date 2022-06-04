@@ -30,5 +30,5 @@ Oxygen spreads each step. Oxygen is produced by algae and breathed in by fish.
 
 Overall the goal is to keep a balance between algae consumption and oxygen production so the fish do not die. Changing the parameters can drastically change the homeostasis of the model
 
-![Screencast](https://video.uva.nl/media/sceencast_proj/0_xah7w4d2)
+![Screencast]https://video.uva.nl/media/sceencast_proj/0_xah7w4d2
 
